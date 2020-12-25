@@ -12,4 +12,4 @@ const App = () => (
   </>
 )
 
-export default src;
+export default App;
