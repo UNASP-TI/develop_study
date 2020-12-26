@@ -1,5 +1,22 @@
-import styled from 'styled-components';
-import { FiTrash2 } from 'react-icons/fi'
+import styled, { css } from 'styled-components';
+import { FiTrash2, FiEdit2 } from 'react-icons/fi'
+
+const CSSIcon = css`
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+
+  cursor: pointer;
+  fill: transparent;
+  border-radius: 6px;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    width: 24px;
+    height: 24px;
+  }
+`;
 
 export const Container = styled.main`
   border: 1px solid rgba(0,0,0, .2);
@@ -7,7 +24,9 @@ export const Container = styled.main`
   position: relative;
 
   padding: 5px;
-  height: 400px;
+  /* height: 350px; */
+  min-width: 500px;
+  max-width: 670px;
   padding-bottom: 50px;
 
   overflow: hidden;
@@ -18,7 +37,7 @@ export const Container = styled.main`
 
     span.note-element {
       display: flex;
-      /* justify-content: center; */
+      font-size: 16px;
       align-items: center;
 
       &:hover {
@@ -44,14 +63,18 @@ export const Container = styled.main`
   }
 `;
 
-export const ButtonDelete = styled(FiTrash2)`
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-
-  cursor: pointer;
+export const DeleteIcon = styled(FiTrash2)`
+  ${CSSIcon};
 
   &:hover {
     color: var(--notification);
+  }
+`;
+
+export const UpdateIcon = styled(FiEdit2)`
+  ${CSSIcon};
+
+  &:hover {
+    color: var(--mention-detail);
   }
 `;

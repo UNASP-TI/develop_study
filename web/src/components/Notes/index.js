@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 // STATICs
-import { Container, ButtonDelete } from './styles';
+import { Container, DeleteIcon, UpdateIcon } from './styles';
 
 const Notes = () => {
   const [noteValue, setNoteValue] = useState('')
+  const [isUpdate, setIsUpdate] = useState({
+    note: null,
+    state: false,
+  })
   const [data, setData] = useState([
     {
       id: 1,
@@ -15,22 +19,46 @@ const Notes = () => {
     }
   ])
 
-  function createNoteNode(id, value) {
+  function createNoteNode(id, value, update = false) {
+    if(update) {
+      const updatedData = data.map(element => {
+        if(element.id === id) {
+          element.value = value
+          return element
+        }
+        return element
+      })
+
+      setData(updatedData)
+      setIsUpdate({ note: null, state: false})
+      setNoteValue('')
+      return
+    }
+
     setData([...data, {
       id,
       value
     }])
   }
-  function createNote(event) {
+  function submitNote(event) {
     event.preventDefault()
 
     if(!noteValue) return;
+    if(isUpdate.state) {
+      createNoteNode(isUpdate.note, noteValue, true)
+      return
+    }
     createNoteNode(Math.random(), noteValue)
     setNoteValue("")
   }
   function deleteNote(id) {
     const newData = data.filter(element => element.id !== id)
     setData(newData)
+  }
+  function updateNote(id, value) {
+    setNoteValue(value)
+    setIsUpdate({ note: id, state: true })
+    // createNoteNode(id, value, true)
   }
 
   return (
@@ -41,13 +69,16 @@ const Notes = () => {
             {note.value}
 
             <button type="button" onClick={() => deleteNote(note.id)}>
-              <ButtonDelete />
+              <DeleteIcon />
+            </button>
+            <button type="button" onClick={() => updateNote(note.id, note.value)}>
+              <UpdateIcon />
             </button>
           </span>
         ))}
       </div>
 
-      <form action="#" onSubmit={createNote}>
+      <form action="#" onSubmit={submitNote}>
         <input
           type="text"
           placeholder="Inserir uma anotação"

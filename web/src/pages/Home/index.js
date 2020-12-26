@@ -12,9 +12,7 @@ const Home = () => {
 
       <NavAside>
         <aside>
-          <li className="actived">Dev4Bimestre</li>
-          <li>github-clone</li>
-          <li>develop-study</li>
+          <li className="actived">develop-study</li>
         </aside>
 
         <Notes />

@@ -19,8 +19,8 @@ export const  NavAside = styled.main`
   margin: 0 auto;
 
   > aside {
-    max-width: 250px;
-    min-width: 180px;
+    max-width: 280px;
+    min-width: 220px;
 
     border: 1px solid rgba(0,0,0, .3);
     border-radius: 6px;
@@ -31,6 +31,7 @@ export const  NavAside = styled.main`
       border-bottom: 0.1px solid rgba(0,0,0, .1);
       box-sizing: border-box;
       padding: 10px;
+      font-size: 15px;
 
       &.actived {
         background: var(--item);
