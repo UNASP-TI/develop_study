@@ -26,6 +26,11 @@ const Notes = () => {
 
     if(!noteValue) return;
     createNoteNode(Math.random(), noteValue)
+    setNoteValue("")
+  }
+  function deleteNote(id) {
+    const newData = data.filter(element => element.id !== id)
+    setData(newData)
   }
 
   return (
@@ -35,7 +40,7 @@ const Notes = () => {
           <span key={note.id} className="note-element">
             {note.value}
 
-            <button type="button">
+            <button type="button" onClick={() => deleteNote(note.id)}>
               <ButtonDelete />
             </button>
           </span>
