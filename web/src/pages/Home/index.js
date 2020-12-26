@@ -1,11 +1,16 @@
 import React from 'react';
 // STYLES
-import { Container } from './styles';
+import { Container, StateBlock, NavAside, NoteMain } from './styles';
 
 const Home = () => {
   return (
     <Container>
-      <h1>elias</h1>
+      <StateBlock>
+
+      </StateBlock>
+
+      <NavAside>elias</NavAside>
+      <NoteMain>elias</NoteMain>
     </Container>
   );
 }
