@@ -1,16 +1,24 @@
 import React from 'react';
 // STYLES
-import { Container, StateBlock, NavAside, NoteMain } from './styles';
+import { Container, NavAside } from './styles';
+// COMPONENTs
+import Header from '../../components/Header'
+import Notes from '../../components/Notes'
 
 const Home = () => {
   return (
     <Container>
-      <StateBlock>
+      <Header />
 
-      </StateBlock>
+      <NavAside>
+        <aside>
+          <li className="actived">Dev4Bimestre</li>
+          <li>github-clone</li>
+          <li>develop-study</li>
+        </aside>
 
-      <NavAside>elias</NavAside>
-      <NoteMain>elias</NoteMain>
+        <Notes />
+      </NavAside>
     </Container>
   );
 }
