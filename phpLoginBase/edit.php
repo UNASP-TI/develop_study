@@ -13,11 +13,11 @@ if(isset($_POST['sub'])){
     else{
         $img=$_POST['img1'];
     }
-    $i="update reg set name='$t',username='$u',password='$p',city='$c',gender='$g',image='$img' where id='$_SESSION[id]'";
+    $i="update pessoa set name='$t',username='$u',password='$p',city='$c',gender='$g',image='$img' where id='$_SESSION[id]'";
     mysqli_query($con, $i);
     header('location:home.php');
 }
-     $s="select*from reg where id='$_SESSION[id]'";
+     $s="select*from pessoa where id='$_SESSION[id]'";
     $qu= mysqli_query($con, $s);
     $f=mysqli_fetch_assoc($qu);
     ?> 

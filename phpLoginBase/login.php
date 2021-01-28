@@ -3,7 +3,7 @@ include'connect.php';
 if(isset($_POST['sub'])){
     $u=$_POST['user'];
     $p=$_POST['pass'];
-    $s= "select * from reg where username='$u' and password= '$p'";   
+    $s= "select * from pessoa where username='$u' and password= '$p'";   
    $qu= mysqli_query($con, $s);
    if(mysqli_num_rows($qu)>0){
       $f= mysqli_fetch_assoc($qu);
@@ -13,7 +13,8 @@ if(isset($_POST['sub'])){
    else{
        echo 'username or password does not exist';
    }
-  
+}else if (isset($_POST['reg'])){
+    header ('location:reg.php');
 }
 ?>
 <html>
@@ -43,6 +44,14 @@ if(isset($_POST['sub'])){
                         <input type="submit" name="sub" value="submit">
                     </td>
                 </tr>
+
+                <tr>
+                    <td>
+                        <input type="submit" name="reg" value="cadastro">
+                         
+                    </td>
+                </tr>
+               
             </table>
     </body>
 </html>

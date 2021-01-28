@@ -1,5 +1,10 @@
 <?php
 include 'connect.php';
+
+if(isset($_SESSION['id']) == false)
+{
+    include 'logout.php';
+}
 ?>
 <table border='1'>
     <tr>
@@ -12,7 +17,7 @@ include 'connect.php';
     </tr>
 
 <?php
-$sq="select * from reg";
+$sq="select * from pessoa";
 $qu=mysqli_query($con,$sq);
 while($f=  mysqli_fetch_assoc($qu)){
     ?>
@@ -27,3 +32,5 @@ while($f=  mysqli_fetch_assoc($qu)){
     <?php
 }
 ?>
+
+<a href="home.php">Home Page </a> 

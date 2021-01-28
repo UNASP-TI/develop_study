@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reg`
+-- Table structure for table `pessoa`
 --
 
-CREATE TABLE `reg` (
+CREATE TABLE `pessoa` (
   `name` varchar(20) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL,
@@ -39,10 +39,10 @@ CREATE TABLE `reg` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reg`
+-- Dumping data for table `pessoa`
 --
 
-INSERT INTO `reg` (`name`, `username`, `password`, `city`, `image`, `gender`, `id`) VALUES
+INSERT INTO `pessoa` (`name`, `username`, `password`, `city`, `image`, `gender`, `id`) VALUES
 ('Bikash', 'bikash', 'bikash', 'knp', 'image/images.png', 'male', 2);
 
 --
@@ -50,9 +50,9 @@ INSERT INTO `reg` (`name`, `username`, `password`, `city`, `image`, `gender`, `i
 --
 
 --
--- Indexes for table `reg`
+-- Indexes for table `pessoa`
 --
-ALTER TABLE `reg`
+ALTER TABLE `pessoa`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -60,9 +60,9 @@ ALTER TABLE `reg`
 --
 
 --
--- AUTO_INCREMENT for table `reg`
+-- AUTO_INCREMENT for table `pessoa`
 --
-ALTER TABLE `reg`
+ALTER TABLE `pessoa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 

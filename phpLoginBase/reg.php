@@ -10,8 +10,12 @@ if(isset($_POST['sub'])){
     move_uploaded_file($_FILES['f1']['tmp_name'], "image/".$_FILES['f1']['name']);
     $img="image/".$_FILES['f1']['name'];
     }
-    $i="insert into reg(name,username,password,city,image,gender)value('$t','$u','$p','$c','$img','$g')";
+    $i="insert into pessoa(name,username,password,city,image,gender)value('$t','$u','$p','$c','$img','$g')";
     mysqli_query($con, $i);
+
+    
+
+    header( "Location: login.php" );
 }
 ?>
 
@@ -45,9 +49,19 @@ if(isset($_POST['sub'])){
                     <td>
                         city
                         <select name="city">
-                            <option value="">-select-</option>
-                            <option value="knp">kanpur</option>
-                            <option value="lko">lucknow</option>
+                        <option value=''>-select-</option>
+                        <?php
+
+                            $sqlCity= mysqli_query($con, "select * from city");
+                                                        
+                            while($item = mysqli_fetch_assoc($sqlCity))
+                            {
+                                $nomeItem = $item['nameCity'];
+                                echo "                                
+                                    <option value=$nomeItem>$nomeItem</option>                                
+                                ";
+                            }
+                        ?>
                     </td>
                 </tr>
                 <tr>
