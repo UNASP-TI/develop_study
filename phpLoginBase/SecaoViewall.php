@@ -1,3 +1,12 @@
+<!-- 
+Sites de exemplo 
+
+https://phpgurukul.com/how-to-create-a-shopping-cart-in-php/
+
+https://codeshack.io/shopping-cart-system-php-mysql/
+
+ -->
+
 <?php
 include 'connect.php';
 
