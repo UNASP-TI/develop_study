@@ -8,7 +8,7 @@ if(isset($_POST['sub'])){
     
     $quant=$_POST['quant'];
 
-    if( isset( $_SESSION['counter'] ) ) {
+    if(isset( $_SESSION['counter'] ) ) {
         $_SESSION['counter'] += $quant;
     }else {
         $_SESSION['counter'] = $quant;

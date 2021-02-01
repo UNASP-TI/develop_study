@@ -20,6 +20,9 @@ if(isset($_POST['sub'])){
     
     $product_id = (int)$_POST['idProduto'];
     $quantity = (int)$_POST['quantity'];
+    $nomeProduto = $_POST['nomeProduto'];
+
+    
 
 
 
@@ -27,14 +30,14 @@ if(isset($_POST['sub'])){
     if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
         if (array_key_exists($product_id, $_SESSION['cart'])) {
             // Product exists in cart so just update the quanity
-            $_SESSION['cart'][$product_id] += $quantity;
+            $_SESSION['cart'][$product_id] = array('quantity'=> $_SESSION['cart'][$product_id]['quantity']+$quantity,'nomeProduto'=>$nomeProduto);
         } else {
             // Product is not in cart so add it
-            $_SESSION['cart'][$product_id] = $quantity;
+            $_SESSION['cart'][$product_id] = array('quantity'=>$quantity,'nomeProduto'=>$nomeProduto);
         }
     } else {
         // There are no products in cart, this will add the first product to cart
-        $_SESSION['cart'] = array($product_id => $quantity);
+        $_SESSION['cart'] = array($product_id => array('quantity'=>$quantity,'nomeProduto'=>$nomeProduto));
     }
 
 
@@ -74,6 +77,7 @@ while($produto=  mysqli_fetch_assoc($qu)){
             <form method="POST" enctype="multipart/form-data">
                 <input type="number" name="quantity" value="1" min="1" placeholder="Quantity" required>
                 <input type="hidden" name="idProduto" value="<?=$produto['idProduto']?>">
+                <input type="hidden" name="nomeProduto" value="<?=$produto['nomeProduto']?>">
                 <input type="submit" name="sub" value="Adicionar">
             </form>
         </td>
@@ -86,10 +90,11 @@ while($produto=  mysqli_fetch_assoc($qu)){
 
 <?php foreach($_SESSION['cart'] as $key => $value):?>
     <ul>
-        <li><?php echo $key." has the value ". $value;?></li>
+        <li><?php echo $key." has the value ". $value['nomeProduto'] . " Quantity ". $value['quantity'] ?></li>
     </ul>
 <?php endforeach; ?>
 
 
 
-<a href="home.php">Home Page </a> 
+<a href="home.php">Home Page </a> <br />
+<a href="secaoFinishShoppingCar.php">Concluir compra </a>  <br /> <br />
