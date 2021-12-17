@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
  
 import Task from "./src/pages/Task/";
 import NewTask from "./src/pages/NewTask/";
-import Details from "./src/pages/Details/";
+import Details from "./src/pages/DeTails/";
  
 const Stack = createStackNavigator();
  
