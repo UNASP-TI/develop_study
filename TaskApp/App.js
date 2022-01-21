@@ -1,40 +1,38 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
- 
-import Task from "./src/pages/Task/";
-import NewTask from "./src/pages/NewTask/";
-import Details from "./src/pages/DeTails/";
- 
-const Stack = createStackNavigator();
- 
+import React, { useEffect } from "react";
+
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+
+
+import db from './src/firebase/firebaseConfig';
+
+import { collection, getDocs } from "firebase/firestore";
+
+
+useEffect(() => {
+  const querySnapshot = getDocs(collection(db, "users"));
+  querySnapshot.forEach((doc) => {
+    console.log(`${doc.id} => ${doc.data()}`);
+  });
+}, []);
+
+
+
+
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Task">
-        <Stack.Screen
-          name="Task"
-          component={Task}
-          options={{
-            headerTintColor: "#F92E6A",
-          }}
-        />
-        <Stack.Screen
-          name="New Task"
-          component={NewTask}
-          options={{
-            headerTintColor: "#F92E6A",
-          }}
-          
-        />
-        <Stack.Screen
-          name="Details"
-          component={Details}
-          options={{
-            headerTintColor: "#F92E6A",
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <Text>Open up App.js to start working on your app!</Text>
+      <StatusBar style="auto" />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
