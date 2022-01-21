@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
 
 
 import db from './src/firebase/firebaseConfig';
@@ -9,12 +10,16 @@ import db from './src/firebase/firebaseConfig';
 import { collection, getDocs } from "firebase/firestore";
 
 
-useEffect(() => {
-  const querySnapshot = getDocs(collection(db, "users"));
-  querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
-  });
-}, []);
+async function onPress() {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id}  => ${doc.data().email}`);
+    });
+};
+
+// useEffect(() => {
+//   
+// }, []);
 
 
 
@@ -22,8 +27,15 @@ useEffect(() => {
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>oi Open up App.js to start working on your app!</Text>
+      
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={onPress}
+      >
+        <Text>Press Here</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -34,5 +46,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10
   },
 });
