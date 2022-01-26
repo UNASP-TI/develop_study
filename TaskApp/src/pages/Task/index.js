@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import database from "../../config/firebase.js";
+import {firebase, auth} from "../../config/firebase.js";
 import { FontAwesome } from "@expo/vector-icons";
 import styles from "./style";
 
@@ -13,9 +13,20 @@ import styles from "./style";
 
 export default function Task({ navigation }) {
   const [task, setTask] = useState([]);
+
+  const database = firebase.firestore();
  
   function deleteTask(id) {
     database.collection("Tasks").doc(id).delete();
+  }
+
+  const handleSignOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        navigation.replace("Login")
+      })
+      .catch(error => alert(error.message))
   }
  
   useEffect(() => {
@@ -32,6 +43,7 @@ export default function Task({ navigation }) {
 
     return (
     <View style={styles.container}>
+      <Text>Email: {auth.currentUser?.email}</Text>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={task}
@@ -39,7 +51,7 @@ export default function Task({ navigation }) {
            return(
             
             <View style={styles.Tasks}>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     style={styles.deleteTask}
                     onPress={() => {
                         deleteTask(item.id)
@@ -51,7 +63,7 @@ export default function Task({ navigation }) {
                     color="#F92e6A"
                     >
                     </FontAwesome>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <Text>
                     {item.description}  
                 </Text>  
@@ -59,6 +71,13 @@ export default function Task({ navigation }) {
           )
         }}
       />
+
+      <TouchableOpacity
+        onPress={handleSignOut}
+        style={styles.button}
+      >
+        <Text style={styles.buttonText}>Sign out</Text>
+      </TouchableOpacity>
 
     </View>
   )
